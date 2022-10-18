@@ -5,6 +5,9 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 
 import br.com.contel.sistemaContel.model.Diaria;
+import br.com.contel.sistemaContel.model.Endereco;
+import br.com.contel.sistemaContel.model.Hotel;
+import br.com.contel.sistemaContel.repository.HotelRepository;
 
 public class DiariaCadastroForm {
 	
@@ -25,10 +28,11 @@ public class DiariaCadastroForm {
 	@NotNull @Positive
 	private double valorDiariaDomingo;
 	
+	private long codigoHotel;
 	
-	public Diaria converter() {
-		
-		return new Diaria(categoriaDiaria, valorDiariaSegunda, valorDiariaTerca, valorDiariaQuarta, valorDiariaQuinta, valorDiariaSexta, valorDiariaSabado, valorDiariaDomingo);
+	public Diaria converter(HotelRepository hotelRepository) {
+		Hotel hotel = hotelRepository.findById(codigoHotel);
+		return new Diaria(categoriaDiaria, valorDiariaSegunda, valorDiariaTerca, valorDiariaQuarta, valorDiariaQuinta, valorDiariaSexta, valorDiariaSabado, valorDiariaDomingo,hotel);
 	}
 	
 	

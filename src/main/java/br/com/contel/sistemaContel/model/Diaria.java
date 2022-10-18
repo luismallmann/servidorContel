@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Diaria {
@@ -18,7 +19,8 @@ public class Diaria {
 	private double valorDiariaSexta;
 	private double valorDiariaSabado;
 	private double valorDiariaDomingo;
-	
+	@ManyToOne
+	private Hotel hotel;
 	
 	public Diaria() {
 		
@@ -26,7 +28,7 @@ public class Diaria {
 	
 	public Diaria(String categoriaDiaria, double valorDiariaSegunda, double valorDiariaTerca,
 			double valorDiariaQuarta, double valorDiariaQuinta, double valorDiariaSexta, double valorDiariaSabado,
-			double valorDiariaDomingo) {
+			double valorDiariaDomingo, Hotel hotel) {
 		this.categoriaDiaria = categoriaDiaria;
 		this.valorDiariaSegunda = valorDiariaSegunda;
 		this.valorDiariaTerca = valorDiariaTerca;
@@ -35,6 +37,7 @@ public class Diaria {
 		this.valorDiariaSexta = valorDiariaSexta;
 		this.valorDiariaSabado = valorDiariaSabado;
 		this.valorDiariaDomingo = valorDiariaDomingo;
+		this.hotel=hotel;
 	}
 	
 	
@@ -109,6 +112,12 @@ public class Diaria {
 	public void setValorDiariaDomingo(double valorDiariaDomingo) {
 		this.valorDiariaDomingo = valorDiariaDomingo;
 	}
-	
-	
+
+	public Hotel getHotel() {
+		return hotel;
+	}
+
+	public void setHotel(Hotel hotel) {
+		this.hotel = hotel;
+	}
 }

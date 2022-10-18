@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Despesa {
@@ -17,22 +18,23 @@ public class Despesa {
 	private String categoriaDespesa;
 	private LocalDate vencimentoDespesa;
 	private LocalDate dataPagamento;
-	
 	// foreign key cnpjHotel
-	
+	@ManyToOne
+	private Hotel hotel;
 	
 	public Despesa() {
 		
 	}
 	
 	public Despesa(int codigoDespesa, double valorDespesa, String descricaoDespesa, String categoriaDespesa,
-			LocalDate vencimentoDespesa, LocalDate dataPagamento) {
+			LocalDate vencimentoDespesa, LocalDate dataPagamento,  Hotel hotel) {
 		this.codigoDespesa = codigoDespesa;
 		this.valorDespesa = valorDespesa;
 		this.descricaoDespesa = descricaoDespesa;
 		this.categoriaDespesa = categoriaDespesa;
 		this.vencimentoDespesa = vencimentoDespesa;
 		this.dataPagamento = dataPagamento;
+		this.hotel=hotel;
 	}
 
 
@@ -83,6 +85,12 @@ public class Despesa {
 	public void setDataPagamento(LocalDate dataPagamento) {
 		this.dataPagamento = dataPagamento;
 	}
-	
-	
+
+	public Hotel getHotel() {
+		return hotel;
+	}
+
+	public void setHotel(Hotel hotel) {
+		this.hotel = hotel;
+	}
 }

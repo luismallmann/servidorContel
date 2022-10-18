@@ -24,6 +24,7 @@ import br.com.contel.sistemaContel.controller.form.DiariaCadastroForm;
 import br.com.contel.sistemaContel.controller.updateForm.AtualizarDiariaForm;
 import br.com.contel.sistemaContel.model.Diaria;
 import br.com.contel.sistemaContel.repository.DiariaRepository;
+import br.com.contel.sistemaContel.repository.HotelRepository;
 
 @RestController
 @RequestMapping("/diaria")
@@ -31,6 +32,8 @@ public class DiariaController {
 
 	@Autowired
 	private DiariaRepository diariaRepository;
+	@Autowired
+	private HotelRepository hotelRespository;
 	
 	
 	@CrossOrigin
@@ -47,7 +50,7 @@ public class DiariaController {
 	@PostMapping
 	public ResponseEntity<DiariaDto> cadastrarDiaria(@RequestBody @Valid DiariaCadastroForm diariaCadastroForm, UriComponentsBuilder uriBuilder) {
 		
-		Diaria diaria = diariaCadastroForm.converter();
+		Diaria diaria = diariaCadastroForm.converter(hotelRespository);
 		
 		diariaRepository.save(diaria);
 		

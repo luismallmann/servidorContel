@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Receita {
@@ -20,6 +22,10 @@ public class Receita {
 	
 	//foreign key codigoReserva
 	//foreign key cnpjHotel
+	@OneToOne
+	private Reserva reserva;
+	@ManyToOne
+	private Hotel hotel;
 	
 	
 	public Receita() {
@@ -27,11 +33,13 @@ public class Receita {
 	}
 	
 	public Receita(int codigoReceita, double valorReceita, String descricaoReceita, String categoriaReceita,
-			LocalDate vencimentoReceita, LocalDate dataRecebimento) {
+			LocalDate vencimentoReceita, LocalDate dataRecebimento, Reserva reserva, Hotel hotel) {
 		this.codigoReceita = codigoReceita;
 		this.valorReceita = valorReceita;
 		this.descricaoReceita = descricaoReceita;
 		this.categoriaReceita = categoriaReceita;
+		this.vencimentoReceita = vencimentoReceita;
+		this.dataRecebimento = dataRecebimento;
 		this.vencimentoReceita = vencimentoReceita;
 		this.dataRecebimento = dataRecebimento;
 	}
@@ -84,6 +92,20 @@ public class Receita {
 	public void setDataRecebimento(LocalDate dataRecebimento) {
 		this.dataRecebimento = dataRecebimento;
 	}
-	
 
+	public Reserva getReserva() {
+		return reserva;
+	}
+
+	public void setReserva(Reserva reserva) {
+		this.reserva = reserva;
+	}
+
+	public Hotel getHotel() {
+		return hotel;
+	}
+
+	public void setHotel(Hotel hotel) {
+		this.hotel = hotel;
+	}
 }
